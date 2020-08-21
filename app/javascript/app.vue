@@ -18,7 +18,7 @@
         </v-list-item>
         <v-list-item
           link
-          v-if='currentUser'
+          v-if='isLogin'
         >
           <v-list-item-action>
             <v-icon>mdi-account</v-icon>
@@ -76,7 +76,7 @@ export default {
     drawer: null,
   }),
   computed: {
-    currentUser() {
+    isLogin() {
       return this.$store.getters["auth/currentUser"];
     },
   },
