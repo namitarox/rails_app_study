@@ -17,6 +17,18 @@
           </v-list-item-content>
         </v-list-item>
         <v-list-item
+          to="/profile"
+          link
+          v-if="isLogin"
+        >
+          <v-list-item-action>
+            <v-icon>mdi-account</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title>プロフィール</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+        <v-list-item
           link
           v-if='isLogin'
         >
