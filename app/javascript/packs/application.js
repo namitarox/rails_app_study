@@ -21,6 +21,13 @@ document.addEventListener('DOMContentLoaded', () => {
         vuetify,
         router,
         store,
+        created() {
+            const userString = localStorage.getItem('currentUser')
+            if (userString) {
+                const userData = JSON.parse(userString)
+                this.$store.commit('auth/SET_CURRENT_USER', userData)
+            }
+        },
         render: h => h(App)
     }).$mount()
     document.body.appendChild(app.$el)
