@@ -75,7 +75,6 @@ export default {
         },
       };
       const res = await axios.post(`/api/microposts`, micropostParams);
-      this.microposts = [...[res.data.micropost], ...this.microposts];
       this.paging(1);
     },
     paging(page) {
