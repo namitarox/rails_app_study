@@ -42,6 +42,8 @@ import axios from "axios";
 export default {
   data: () => ({
     microposts: [],
+    pagingMeta: null,
+    currentPage: 1,
   }),
   components: {
     MicropostForm,
