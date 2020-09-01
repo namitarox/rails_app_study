@@ -2,7 +2,7 @@
   <v-container>
     <v-row>
       <v-col>
-        <div>
+        <div class="pb-10">
           <div
             class="mb-5"
             v-if="isLogin"
@@ -12,6 +12,7 @@
           <timeline-list
             v-if="isExistMicroposts"
             :microposts="microposts"
+            class="mb-5"
           ></timeline-list>
           <div
             class="text-center"
@@ -19,6 +20,16 @@
           >
             一件もありません
           </div>
+          <template v-if="pagingMeta">
+            <div class="text-center">
+              <v-pagination
+                color="indigo"
+                v-model="pagingMeta.current_page"
+                :length="pagingMeta.total_pages"
+                @input="paging"
+              ></v-pagination>
+            </div>
+          </template>
         </div>
       </v-col>
     </v-row>
@@ -31,6 +42,8 @@ import axios from "axios";
 export default {
   data: () => ({
     microposts: [],
+    pagingMeta: null,
+    currentPage: 1,
   }),
   components: {
     MicropostForm,
@@ -49,8 +62,11 @@ export default {
   },
   methods: {
     async fetchMicroposts() {
-      const res = await axios.get(`/api/microposts`);
+      const res = await axios.get(`/api/microposts`, {
+        params: { page: this.currentPage },
+      });
       this.microposts = res.data.microposts;
+      this.pagingMeta = res.data.meta;
     },
     async createMicropost(micropostContent) {
       const micropostParams = {
@@ -59,7 +75,12 @@ export default {
         },
       };
       const res = await axios.post(`/api/microposts`, micropostParams);
-      this.microposts = [...[res.data.micropost], ...this.microposts];
+      this.paging(1);
+    },
+    paging(page) {
+      this.currentPage = page;
+      this.fetchMicroposts();
+      this.$vuetify.goTo(0);
     },
   },
 };
