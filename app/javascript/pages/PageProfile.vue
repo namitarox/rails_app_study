@@ -87,7 +87,10 @@
               </v-list-item-content>
             </v-list-item>
           </v-list>
-          <profile-edit-modal ref="dialog"></profile-edit-modal>
+          <profile-edit-modal
+            v-if="isMe"
+            ref="dialog"
+          ></profile-edit-modal>
         </v-card>
       </v-col>
     </v-row>
