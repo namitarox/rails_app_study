@@ -4,7 +4,10 @@
       <v-card class="mb-3">
         <v-card-text>
           <header>絞り込み条件</header>
-          <v-row dense justify="start">
+          <v-row
+            dense
+            justify="start"
+          >
             <template>
               <v-checkbox
                 v-for="tag in tags"
@@ -34,7 +37,12 @@
       </v-card>
     </template>
     <v-row dense>
-      <v-col v-for="user in users" :key="user.id" :cols="6" :md="3">
+      <v-col
+        v-for="user in users"
+        :key="user.id"
+        :cols="6"
+        :md="3"
+      >
         <v-card>
           <v-img
             :src="`http://placeimg.com/300/300/people?dummy=${user.id}`"
@@ -44,7 +52,11 @@
             aspect-ratio="1"
           >
             <template v-slot:placeholder>
-              <v-row class="fill-height ma-0" align="center" justify="center">
+              <v-row
+                class="fill-height ma-0"
+                align="center"
+                justify="center"
+              >
                 <v-progress-circular
                   indeterminate
                   color="grey lighten-5"
@@ -58,7 +70,10 @@
             ></v-card-title>
           </v-img>
 
-          <v-card-text class="text--primary" style="min-height: 64px;">
+          <v-card-text
+            class="text--primary"
+            style="min-height: 64px;"
+          >
             <v-chip
               class="ma-1"
               color="orange"
@@ -67,7 +82,10 @@
               v-for="tag in user.tags"
               :key="tag.name"
             >
-              <v-icon left class="mr-0">mdi-music-accidental-sharp</v-icon>
+              <v-icon
+                left
+                class="mr-0"
+              >mdi-music-accidental-sharp</v-icon>
               {{ tag.name }}
             </v-chip>
           </v-card-text>
